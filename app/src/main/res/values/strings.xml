@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Game List</string>
+    <string name="app_name" translatable="false">Game List</string>
     <string name="game_list">Game List</string>
     <string name="settings">Settings</string>
     <string name="filter">Filter</string>
@@ -23,4 +23,5 @@
     <string name="description">Description</string>
     <string name="create_game">Create Game</string>
     <string name="restore_settings">Restore Settings</string>
+    <string name="watch_trailer">Watch trailer</string>
 </resources>

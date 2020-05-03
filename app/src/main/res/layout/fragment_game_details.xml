@@ -84,7 +84,7 @@ tools:context=".fragments.GameDetails">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Watch trailer"
+                    android:text="@string/watch_trailer"
                     android:textColor="@color/colorPrimaryDark" />
             </LinearLayout>
 

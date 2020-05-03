@@ -13,6 +13,7 @@ import by.maxnevans.gamelist.dao.Settings
 import by.maxnevans.gamelist.model.SettingsBuilder
 import by.maxnevans.gamelist.model.Storage
 import by.maxnevans.gamelist.view.Fonts
+import by.maxnevans.gamelist.view.LocaleHelper
 import by.maxnevans.gamelist.view.UIAdapter
 
 /**

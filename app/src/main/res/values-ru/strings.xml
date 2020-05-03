@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="game_list">Список игр</string>
+    <string name="settings">Настройки</string>
+    <string name="filter">Фильтр</string>
+    <string name="add_new_game">Добавить игру</string>
+    <string name="players">Игроки</string>
+    <string name="cost">Цена</string>
+    <string name="free_to_play">Бесплатно</string>
+    <string name="rating">Рейтинг</string>
+    <string name="game_info">Информация</string>
+    <string name="count_players">Количество игроков</string>
+    <string name="failed_to_play_trailer">Ошибка воспроизведения трейлера! Извините, но здесь его нет!</string>
+    <string name="trailer_not_found">Трейлер не найден</string>
+    <string name="application_settings">Настройки</string>
+    <string name="game_filters">Фильтры игр</string>
+    <string name="apply_filters">Применить</string>
+    <string name="clear_filters">Очистить</string>
+    <string name="apply_settings">Применить</string>
+    <string name="language">Язык</string>
+    <string name="font_size">Размер шрифта</string>
+    <string name="name">Имя</string>
+    <string name="description">Описание</string>
+    <string name="create_game">Создать игру</string>
+    <string name="restore_settings">Сбросить</string>
+    <string name="watch_trailer">Смотреть трейлер</string>
+</resources>
