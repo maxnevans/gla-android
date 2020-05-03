@@ -10,10 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import by.maxnevans.gamelist.R
 import by.maxnevans.gamelist.dao.Game
+import by.maxnevans.gamelist.model.Storage
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonConfiguration
 import kotlin.math.roundToInt
 
 class GameList : Fragment() {
@@ -52,7 +56,12 @@ class GameList : Fragment() {
     private fun Double.format(digits: Int) = "%.${digits}f".format(this)
 
     private fun onGameClick(it: View) {
-        Navigation.findNavController(it).navigate(R.id.action_game_list_to_game_details)
+        val game = it?.getTag(R.id.game_object)
+        val json = Json(JsonConfiguration.Stable)
+        val jsonGame = json.stringify(Game.serializer(), game as Game)
+
+        val action = GameListDirections.actionGameListToGameDetails(jsonGame)
+        Navigation.findNavController(it).navigate(action)
     }
 
     private fun onFiltersClick(it: View) {
@@ -70,6 +79,7 @@ class GameList : Fragment() {
     private fun createGameItem(game: Game): View {
         val item = LayoutInflater.from(view?.context).inflate(R.layout.game_list_item, null)
 
+        item.setTag(R.id.game_object, game)
         item.setOnClickListener() { onGameClick(it) }
 
         item.findViewById<TextView>(R.id.txt_val_name).text = game.name
@@ -91,15 +101,8 @@ class GameList : Fragment() {
         item.findViewById<TextView>(R.id.txt_val_count_players).text = countPlayersString.toString()
 
         item.findViewById<TextView>(R.id.txt_val_rating).text = "${game.rating.format(1)} of 5.0"
-        item.findViewById<ImageView>(R.id.img_item_logo).background = resolveGameLogo(game.logo)
+        item.findViewById<ImageView>(R.id.img_item_logo).background = Storage.instance.resolveImage(requireContext(), game.logo)
 
         return item
-    }
-
-    private fun resolveGameLogo(logo: String?): Drawable? {
-        val defaultLogo = ResourcesCompat.getDrawable(resources,
-            R.drawable.default_logo, null)
-
-        return defaultLogo
     }
 }

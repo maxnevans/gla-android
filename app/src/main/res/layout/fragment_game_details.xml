@@ -52,7 +52,7 @@ tools:context=".fragments.GameDetails">
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/img_logo"
+                android:id="@+id/game_details_img_logo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -66,8 +66,8 @@ tools:context=".fragments.GameDetails">
                 android:orientation="vertical"
                 android:paddingStart="20dp"
                 android:paddingBottom="20dp"
-                app:layout_constraintBottom_toBottomOf="@+id/img_logo"
-                app:layout_constraintStart_toStartOf="@id/img_logo">
+                app:layout_constraintBottom_toBottomOf="@+id/game_details_img_logo"
+                app:layout_constraintStart_toStartOf="@id/game_details_img_logo">
 
                 <TextView
                     android:id="@+id/game_details_txt_val_name"
@@ -110,7 +110,7 @@ tools:context=".fragments.GameDetails">
                     android:text="@string/count_players" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/game_details_txt_val_count_players"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView" />
@@ -129,7 +129,7 @@ tools:context=".fragments.GameDetails">
                     android:text="@string/rating" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/game_details_txt_val_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView" />
@@ -147,7 +147,7 @@ tools:context=".fragments.GameDetails">
                     android:text="@string/cost" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/game_details_txt_val_cost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView" />
@@ -156,7 +156,7 @@ tools:context=".fragments.GameDetails">
         </TableLayout>
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/game_details_txt_val_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"

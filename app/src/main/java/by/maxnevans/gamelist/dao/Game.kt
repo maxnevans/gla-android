@@ -1,5 +1,7 @@
 package by.maxnevans.gamelist.dao
+import kotlinx.serialization.*
 
+@Serializable
 data class Game(var id: Int,
                 var name: String,
                 var countPlayers: Double,

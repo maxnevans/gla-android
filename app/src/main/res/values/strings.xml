@@ -8,16 +8,12 @@
     <string name="cost">Cost</string>
     <string name="free_to_play">Free to play</string>
     <string name="rating">Rating</string>
-    <string name="of">of</string>
-    <string name="millions">millions</string>
-    <string name="thousands">thousands</string>
     <string name="game_info">Game Info</string>
     <string name="count_players">Count players</string>
     <string name="failed_to_play_trailer">Failed to play trailer! Sorry but there is not trailer!</string>
     <string name="trailer_not_found">Trailer not found</string>
     <string name="application_settings">Settings</string>
     <string name="game_filters">Game filters</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="apply_filters">Apply Filters</string>
     <string name="clear_filters">Clear Filters</string>
     <string name="apply_settings">Apply Settings</string>
