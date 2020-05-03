@@ -129,10 +129,14 @@ object UIAdapter {
     }
 
     private fun makeNonLinearFromLinear(linear: Double): Double {
-        return linear.pow(3)
+        val alpha = 10000
+        val gamma= 10.0
+        return alpha * (Math.exp(linear / alpha) - 1)*linear.pow(gamma)
     }
 
     private fun makeLinearFromNonLinear(nonLinear: Double): Double {
-        return nonLinear.pow(1 / 3.0)
+        val alpha = 10000
+        val gamma= 10.0
+        return Math.log(Math.pow(nonLinear / alpha, 1 / gamma) + 1) * alpha
     }
 }

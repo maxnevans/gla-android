@@ -9,6 +9,7 @@ import by.maxnevans.gamelist.R
 import by.maxnevans.gamelist.dao.Game
 import by.maxnevans.gamelist.model.Storage
 import by.maxnevans.gamelist.view.Fonts
+import by.maxnevans.gamelist.view.Formatter
 
 class SplashActivity : AppCompatActivity() {
 
@@ -26,6 +27,7 @@ class SplashActivity : AppCompatActivity() {
         Storage.games.endUpdateTransaction()
 
         Fonts.loadFonts(baseContext)
+        Formatter.setupResourceSource(baseContext)
 
         Handler().postDelayed(Runnable {
             val i = Intent(baseContext, MainActivity::class.java)
