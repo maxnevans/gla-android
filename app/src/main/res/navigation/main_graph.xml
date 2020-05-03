@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/fragment_game_list">
+
+    <fragment
+        android:id="@+id/fragment_game_list"
+        android:name="by.maxnevans.gamelist.fragments.GameList"
+        android:label="fragment_game_list"
+        tools:layout="@layout/fragment_game_list" >
+        <action
+            android:id="@+id/action_game_list_to_game_details"
+            app:destination="@id/fragment_game_details"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/fragment_game_list" />
+        <action
+            android:id="@+id/action_game_list_to_application_settings"
+            app:destination="@id/fragment_application_settings"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/fragment_game_list" />
+        <action
+            android:id="@+id/action_game_list_to_game_filters"
+            app:destination="@id/fragment_game_filters"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/fragment_game_list" />
+        <action
+            android:id="@+id/action_game_list_to_add_game"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:destination="@id/fragment_add_game"
+            app:popUpTo="@id/fragment_game_list" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_game_details"
+        android:name="by.maxnevans.gamelist.fragments.GameDetails"
+        android:label="fragment_game_details"
+        tools:layout="@layout/fragment_game_details" />
+    <fragment
+        android:id="@+id/fragment_application_settings"
+        android:name="by.maxnevans.gamelist.fragments.ApplicationSettings"
+        android:label="fragment_application_settings"
+        tools:layout="@layout/fragment_application_settings" />
+    <fragment
+        android:id="@+id/fragment_game_filters"
+        android:name="by.maxnevans.gamelist.fragments.GameFilters"
+        android:label="fragment_game_filters"
+        tools:layout="@layout/fragment_game_filters" />
+    <fragment
+        android:id="@+id/fragment_add_game"
+        android:name="by.maxnevans.gamelist.fragments.AddGame"
+        android:label="fragment_add_game"
+        tools:layout="@layout/fragment_add_game" />
+</navigation>
