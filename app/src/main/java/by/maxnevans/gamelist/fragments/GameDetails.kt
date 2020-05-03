@@ -22,6 +22,8 @@ import kotlinx.serialization.json.JsonConfiguration
  */
 class GameDetails : Fragment() {
 
+    private var game: Game? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,8 +35,8 @@ class GameDetails : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val json = Json(JsonConfiguration.Stable)
-        val game = json.parse(Game.serializer(), GameDetailsArgs.fromBundle(requireArguments()).jsonGame ?: "")
-        fillGameData(view, game)
+        game = json.parse(Game.serializer(), GameDetailsArgs.fromBundle(requireArguments()).jsonGame ?: "")
+        fillGameData(view, game!!)
         view.findViewById<ImageButton>(R.id.game_details_img_btn_back).setOnClickListener(){ onBackClick(it) }
     }
 
@@ -48,13 +50,18 @@ class GameDetails : Fragment() {
     }
 
     private fun onWatchTrailerClick(it: View) {
-        val builder = AlertDialog.Builder(it.context)
-        builder.setMessage(R.string.failed_to_play_trailer)
-        builder.setTitle(R.string.trailer_not_found)
-        builder.setPositiveButton("Ok") { dialog: DialogInterface?, which: Int ->
-            // DO noting
+        if (game?.trailer == null) {
+            val builder = AlertDialog.Builder(it.context)
+            builder.setMessage(R.string.failed_to_play_trailer)
+            builder.setTitle(R.string.trailer_not_found)
+            builder.setPositiveButton("Ok") { dialog: DialogInterface?, which: Int ->
+                // DO noting
+            }
+            builder.show()
+        } else {
+            val action = GameDetailsDirections.actionFragmentGameDetailsToActivityTrailerPlayer(game!!.trailer!!)
+            Navigation.findNavController(it).navigate(action)
         }
-        builder.show()
     }
 
     private fun onBackClick(it: View) {

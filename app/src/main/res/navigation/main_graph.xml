@@ -53,6 +53,14 @@
             app:argType="string"
             app:nullable="true"
             android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_fragment_game_details_to_activity_trailer_player"
+            app:destination="@id/activity_trailer_player"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/fragment_game_details" />
     </fragment>
     <fragment
         android:id="@+id/fragment_application_settings"
@@ -69,4 +77,14 @@
         android:name="by.maxnevans.gamelist.fragments.AddGame"
         android:label="fragment_add_game"
         tools:layout="@layout/fragment_add_game" />
+    <activity
+        android:id="@+id/activity_trailer_player"
+        android:name="by.maxnevans.gamelist.activities.TrailerPlayerActivity"
+        android:label="activity_trailer_player"
+        tools:layout="@layout/activity_trailer_player" >
+        <argument
+            android:name="videoUrl"
+            app:argType="string"
+            app:nullable="false" />
+    </activity>
 </navigation>

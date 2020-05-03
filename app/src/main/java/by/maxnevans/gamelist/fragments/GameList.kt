@@ -37,7 +37,8 @@ class GameList : Fragment() {
         super.onStart()
         setupClickListeners()
 
-        val gDota2 = Game(0, "Dota 2 ", 0.0, 4.3, 10000.0, "", null, null)
+        val gDota2 = Game(0, "Dota 2 ", 0.0, 4.3, 10000.0, "", null,
+        "android.resource://" + context?.packageName + "/" + R.raw.dota2)
         val dota2 = createGameItem(gDota2)
         val gLol = Game(1, "League of Legends", 0.0, 4.3, 10000.0, "", null, null)
         val lol = createGameItem(gLol)
