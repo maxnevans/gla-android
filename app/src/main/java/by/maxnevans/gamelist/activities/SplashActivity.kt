@@ -8,6 +8,7 @@ import android.view.WindowManager
 import by.maxnevans.gamelist.R
 import by.maxnevans.gamelist.dao.Game
 import by.maxnevans.gamelist.model.Storage
+import by.maxnevans.gamelist.view.Fonts
 
 class SplashActivity : AppCompatActivity() {
 
@@ -23,6 +24,8 @@ class SplashActivity : AppCompatActivity() {
         Storage.games.add(gDota2)
         Storage.games.add(gLol)
         Storage.games.endUpdateTransaction()
+
+        Fonts.loadFonts(baseContext)
 
         Handler().postDelayed(Runnable {
             val i = Intent(baseContext, MainActivity::class.java)

@@ -31,7 +31,7 @@ class GameFilters : Fragment() {
     var txtCost: TextView? = null
     var txtRating: TextView? = null
     var txtCountPlayers: TextView? = null
-    var filters: Filters = Storage.filters.raw
+    var filters: Filters = Storage.filters.raw.copy()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,10 +46,6 @@ class GameFilters : Fragment() {
         setupUIElements(view)
         setupInitialValues()
         setupSeekbarValueChangeListeners()
-    }
-
-    override fun onStart() {
-        super.onStart()
         setupClickListeners()
     }
 

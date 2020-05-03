@@ -1,9 +1,9 @@
 package by.maxnevans.gamelist.view
 
-import android.widget.ImageView
-import android.widget.SeekBar
-import android.widget.TextView
+import android.R
+import android.widget.*
 import by.maxnevans.gamelist.model.FiltersBuilder
+import by.maxnevans.gamelist.model.SettingsBuilder
 import by.maxnevans.gamelist.model.Storage
 import org.w3c.dom.Text
 import kotlin.math.pow
@@ -70,6 +70,24 @@ object UIAdapter {
         txt.text = desc
     }
 
+    fun setFontSize(fontSize: Int, sb: SeekBar) {
+        sb.progress = getSeekBarProgressFromPercentage(calcFontSizeFromPercentage(fontSize), sb)
+    }
+
+    fun setSpinnerValues(sp: Spinner, values: List<String>) {
+        val aa = ArrayAdapter<String>(sp.context, R.layout.simple_spinner_item, values)
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        sp.adapter = aa
+    }
+
+    fun setSpinnerSelection(sp: Spinner, value: String) {
+        sp.setSelection((sp.adapter as ArrayAdapter<String>).getPosition(value))
+    }
+
+    fun getFontSize(sb: SeekBar): Int {
+        return calcFontSize(getSeekBarProgressInProcentages(sb))
+    }
+
     private fun getSeekBarProgressInProcentages(sb: SeekBar): Double {
         return sb.progress * 1.0 / sb.max
     }
@@ -100,6 +118,14 @@ object UIAdapter {
 
     private fun calcCountPlayersPercentage(countPlayers: Double): Double {
         return makeLinearFromNonLinear((countPlayers - FiltersBuilder.MIN_COUNT_PLAYERS) / FiltersBuilder.DIFF_COUNT_PLAYERS)
+    }
+
+    private fun calcFontSize(fontSizeInProcentages: Double): Int {
+        return (fontSizeInProcentages * SettingsBuilder.DIFF_FONT_SIZE + SettingsBuilder.MIN_FONT_SIZE).roundToInt()
+    }
+
+    private fun calcFontSizeFromPercentage(fontSize: Int): Double {
+        return (fontSize * 1.0 - SettingsBuilder.MIN_FONT_SIZE) / SettingsBuilder.DIFF_FONT_SIZE
     }
 
     private fun makeNonLinearFromLinear(linear: Double): Double {

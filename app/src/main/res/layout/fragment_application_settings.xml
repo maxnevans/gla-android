@@ -143,6 +143,18 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:text="@string/apply_settings" />
 
+            <Button
+                android:id="@+id/app_settings_btn_restore_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/style_button_background"
+                android:textColor="@drawable/style_button_text_color"
+                android:padding="10dp"
+                style="?android:attr/borderlessButtonStyle"
+                android:text="@string/restore_settings" />
+
         </LinearLayout>
     </LinearLayout>
 
