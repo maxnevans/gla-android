@@ -14,6 +14,7 @@ import androidx.navigation.Navigation
 import by.maxnevans.gamelist.R
 import by.maxnevans.gamelist.dao.Game
 import by.maxnevans.gamelist.model.Storage
+import by.maxnevans.gamelist.view.UIAdapter
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 
@@ -41,12 +42,12 @@ class GameDetails : Fragment() {
     }
 
     private fun fillGameData(view: View, game: Game) {
-        view.findViewById<TextView>(R.id.game_details_txt_val_name).text = game.name
-        view.findViewById<TextView>(R.id.game_details_txt_val_cost).text = "%.2f".format(game.cost)
-        view.findViewById<TextView>(R.id.game_details_txt_val_rating).text = "%.1f".format(game.rating)
-        view.findViewById<TextView>(R.id.game_details_txt_val_count_players).text = "%.0f".format(game.countPlayers)
-        view.findViewById<ImageView>(R.id.game_details_img_logo).background = Storage.instance.resolveImage(requireContext(), game.logo)
-        view.findViewById<TextView>(R.id.game_details_txt_val_description).text = game.description
+        UIAdapter.setName(game.name,  view.findViewById<TextView>(R.id.game_details_txt_val_name))
+        UIAdapter.setCost(game.cost, view.findViewById<TextView>(R.id.game_details_txt_val_cost))
+        UIAdapter.setRating(game.rating, view.findViewById<TextView>(R.id.game_details_txt_val_rating))
+        UIAdapter.setCountPlayers(game.countPlayers, view.findViewById<TextView>(R.id.game_details_txt_val_count_players))
+        UIAdapter.setLogo(game.logo, view.findViewById<ImageView>(R.id.game_details_img_logo))
+        UIAdapter.setDescription(game.description, view.findViewById<TextView>(R.id.game_details_txt_val_description))
     }
 
     private fun onWatchTrailerClick(it: View) {
@@ -59,7 +60,7 @@ class GameDetails : Fragment() {
             }
             builder.show()
         } else {
-            val action = GameDetailsDirections.actionFragmentGameDetailsToActivityTrailerPlayer(game!!.trailer!!)
+            val action = GameDetailsDirections.actionFragmentGameDetailsToActivityTrailerPlayer(Storage.resolveTrailer(requireContext(), game?.trailer))
             Navigation.findNavController(it).navigate(action)
         }
     }
