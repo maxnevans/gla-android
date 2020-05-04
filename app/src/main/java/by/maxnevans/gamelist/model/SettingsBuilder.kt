@@ -1,7 +1,7 @@
 package by.maxnevans.gamelist.model
 
-import by.maxnevans.gamelist.dao.Language
-import by.maxnevans.gamelist.dao.Settings
+import by.maxnevans.gamelist.model.dao.Language
+import by.maxnevans.gamelist.model.dao.Settings
 
 object SettingsBuilder {
     val DEFAULT_LANGUAGE = Language.ENGLISH

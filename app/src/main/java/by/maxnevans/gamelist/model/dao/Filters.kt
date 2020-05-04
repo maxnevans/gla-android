@@ -1,4 +1,4 @@
-package by.maxnevans.gamelist.dao
+package by.maxnevans.gamelist.model.dao
 
 import kotlinx.serialization.Serializable
 

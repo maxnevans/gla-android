@@ -1,6 +1,5 @@
 package by.maxnevans.gamelist.fragments
 
-import android.app.usage.StorageStats
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,7 +11,7 @@ import android.widget.SeekBar
 import android.widget.TextView
 import androidx.navigation.Navigation
 import by.maxnevans.gamelist.R
-import by.maxnevans.gamelist.dao.Filters
+import by.maxnevans.gamelist.model.dao.Filters
 import by.maxnevans.gamelist.model.FiltersBuilder
 import by.maxnevans.gamelist.model.Storage
 import by.maxnevans.gamelist.view.UIAdapter

@@ -1,6 +1,6 @@
 package by.maxnevans.gamelist.model
 
-import by.maxnevans.gamelist.dao.Filters
+import by.maxnevans.gamelist.model.dao.Filters
 
 object FiltersBuilder {
     val MIN_COST = 0.0

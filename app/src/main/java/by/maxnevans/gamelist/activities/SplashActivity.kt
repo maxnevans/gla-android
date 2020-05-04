@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
 import by.maxnevans.gamelist.R
-import by.maxnevans.gamelist.dao.Game
+import by.maxnevans.gamelist.model.dao.Game
 import by.maxnevans.gamelist.model.Storage
 import by.maxnevans.gamelist.view.Fonts
 import by.maxnevans.gamelist.view.Formatter

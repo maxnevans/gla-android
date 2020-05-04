@@ -1,11 +1,9 @@
 package by.maxnevans.gamelist.model
 
-import by.maxnevans.gamelist.dao.Filters
-import by.maxnevans.gamelist.dao.Game
-import by.maxnevans.gamelist.dao.Settings
+import by.maxnevans.gamelist.model.dao.Filters
+import by.maxnevans.gamelist.model.dao.Game
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
-import java.util.logging.Filter
 
 class FiltersController internal constructor(): UpdatableController<Filters>(){
     override var obj: Filters = FiltersBuilder.buildDefault()

@@ -8,12 +8,11 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.navigation.Navigation
 import by.maxnevans.gamelist.R
-import by.maxnevans.gamelist.dao.Language
-import by.maxnevans.gamelist.dao.Settings
+import by.maxnevans.gamelist.model.dao.Language
+import by.maxnevans.gamelist.model.dao.Settings
 import by.maxnevans.gamelist.model.SettingsBuilder
 import by.maxnevans.gamelist.model.Storage
 import by.maxnevans.gamelist.view.Fonts
-import by.maxnevans.gamelist.view.LocaleHelper
 import by.maxnevans.gamelist.view.UIAdapter
 
 /**

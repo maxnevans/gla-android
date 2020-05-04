@@ -12,7 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation
 import by.maxnevans.gamelist.R
-import by.maxnevans.gamelist.dao.Game
+import by.maxnevans.gamelist.model.dao.Game
 import by.maxnevans.gamelist.model.Storage
 import by.maxnevans.gamelist.view.UIAdapter
 import kotlinx.serialization.json.Json

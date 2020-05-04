@@ -1,8 +1,7 @@
 package by.maxnevans.gamelist.model
 
-import by.maxnevans.gamelist.dao.Filters
-import by.maxnevans.gamelist.dao.Language
-import by.maxnevans.gamelist.dao.Settings
+import by.maxnevans.gamelist.model.dao.Language
+import by.maxnevans.gamelist.model.dao.Settings
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 
