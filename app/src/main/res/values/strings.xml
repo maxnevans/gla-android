@@ -30,4 +30,5 @@
     <string name="thousands" translatable="false">k</string>
     <string name="thousand" translatable="false">k</string>
     <string name="billion" translatable="false">b</string>
+    <string name="font_family">Font Family</string>
 </resources>

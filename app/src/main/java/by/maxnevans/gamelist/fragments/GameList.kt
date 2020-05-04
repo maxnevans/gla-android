@@ -16,6 +16,7 @@ import kotlinx.serialization.json.JsonConfiguration
 
 class GameList : Fragment() {
     private var gamesContainer: LinearLayout? = null
+    private var navText: TextView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,16 +28,23 @@ class GameList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupClickListeners()
+        setupUIElements(view)
+        setupClickListeners(view)
 
         gamesContainer = view.findViewById(R.id.ctnr_list_v_layout)
         updateGameList(gamesContainer!!)
     }
 
-    private fun setupClickListeners() {
-        view?.findViewById<ImageButton>(R.id.img_btn_filters)?.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_game_list_to_game_filters))
-        view?.findViewById<ImageButton>(R.id.img_btn_add)?.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_game_list_to_add_game))
-        view?.findViewById<ImageButton>(R.id.img_btn_settings)?.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_game_list_to_application_settings))
+    private fun setupUIElements(view: View) {
+        navText = view.findViewById<TextView>(R.id.game_list_nav_text)
+
+        UIAdapter.setFont(navText!!, Storage.settings.raw)
+    }
+
+    private fun setupClickListeners(view: View) {
+        view.findViewById<ImageButton>(R.id.img_btn_filters)?.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_game_list_to_game_filters))
+        view.findViewById<ImageButton>(R.id.img_btn_add)?.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_game_list_to_add_game))
+        view.findViewById<ImageButton>(R.id.img_btn_settings)?.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_game_list_to_application_settings))
     }
 
     private fun onGameClick(it: View) {
@@ -71,10 +79,26 @@ class GameList : Fragment() {
         item.setTag(R.id.game_object, game)
         item.setOnClickListener() { onGameClick(it) }
 
-        UIAdapter.setName(game.name,  item.findViewById<TextView>(R.id.txt_val_name))
-        UIAdapter.setCost(game.cost, item.findViewById<TextView>(R.id.txt_val_cost))
-        UIAdapter.setRating(game.rating, item.findViewById<TextView>(R.id.txt_val_rating))
-        UIAdapter.setCountPlayers(game.countPlayers, item.findViewById<TextView>(R.id.txt_val_count_players))
+        val txtValName = item.findViewById<TextView>(R.id.txt_val_name)
+        val txtCost = item.findViewById<TextView>(R.id.txt_cost)
+        val txtValCost = item.findViewById<TextView>(R.id.txt_val_cost)
+        val txtRating = item.findViewById<TextView>(R.id.txt_rating)
+        val txtValRating = item.findViewById<TextView>(R.id.txt_val_rating)
+        val txtCountPlayers = item.findViewById<TextView>(R.id.txt_count_players)
+        val txtValCountPlayers = item.findViewById<TextView>(R.id.txt_val_count_players)
+
+        UIAdapter.setFont(txtValName, Storage.settings.raw)
+        UIAdapter.setFont(txtCost, Storage.settings.raw)
+        UIAdapter.setFont(txtValCost, Storage.settings.raw)
+        UIAdapter.setFont(txtRating, Storage.settings.raw)
+        UIAdapter.setFont(txtValRating, Storage.settings.raw)
+        UIAdapter.setFont(txtCountPlayers, Storage.settings.raw)
+        UIAdapter.setFont(txtValCountPlayers, Storage.settings.raw)
+
+        UIAdapter.setName(game.name, txtValName)
+        UIAdapter.setCost(game.cost, txtValCost)
+        UIAdapter.setRating(game.rating, txtValRating)
+        UIAdapter.setCountPlayers(game.countPlayers, txtValCountPlayers)
         UIAdapter.setLogo(game.logo, item.findViewById<ImageView>(R.id.img_item_logo))
 
         return item

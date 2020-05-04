@@ -38,6 +38,7 @@
             android:src="@drawable/magnifier" />
 
         <TextView
+            android:id="@+id/game_list_nav_text"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:gravity="center"

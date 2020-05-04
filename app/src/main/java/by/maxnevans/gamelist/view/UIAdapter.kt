@@ -5,6 +5,7 @@ import android.widget.*
 import by.maxnevans.gamelist.model.FiltersBuilder
 import by.maxnevans.gamelist.model.SettingsBuilder
 import by.maxnevans.gamelist.model.Storage
+import by.maxnevans.gamelist.model.dao.Settings
 import org.w3c.dom.Text
 import kotlin.math.pow
 import kotlin.math.roundToInt
@@ -86,6 +87,11 @@ object UIAdapter {
 
     fun getFontSize(sb: SeekBar): Int {
         return calcFontSize(getSeekBarProgressInProcentages(sb))
+    }
+
+    fun setFont(txt: TextView, settings: Settings) {
+        txt.typeface = Fonts.map[settings.fontFamily]
+        txt.textSize = settings.fontSize.toFloat()
     }
 
     private fun getSeekBarProgressInProcentages(sb: SeekBar): Double {

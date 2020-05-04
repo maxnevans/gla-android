@@ -20,7 +20,6 @@ import by.maxnevans.gamelist.view.UIAdapter
  * A simple [Fragment] subclass.
  */
 class GameFilters : Fragment() {
-
     var maxCost: SeekBar? = null
     var minCost: SeekBar? = null
     var maxRating: SeekBar? = null
@@ -30,6 +29,12 @@ class GameFilters : Fragment() {
     var txtCost: TextView? = null
     var txtRating: TextView? = null
     var txtCountPlayers: TextView? = null
+    var txtValCost: TextView? = null
+    var txtValRating: TextView? = null
+    var txtValCountPlayers: TextView? = null
+    var txtNavText: TextView? = null
+    var btnApplyFilters: Button? = null
+    var btnClearFilters: Button? = null
     var filters: Filters = Storage.filters.raw.copy()
 
     override fun onCreateView(
@@ -60,15 +65,34 @@ class GameFilters : Fragment() {
         minCountPlayers = view.findViewById(R.id.game_filters_sb_min_count_players)
         maxRating = view.findViewById(R.id.game_filters_sb_max_rating)
         minRating = view.findViewById(R.id.game_filters_sb_min_rating)
-        txtCost = view.findViewById(R.id.game_filters_txt_val_cost)
-        txtRating = view.findViewById(R.id.game_filters_txt_val_rating)
-        txtCountPlayers = view.findViewById(R.id.game_filters_txt_val_count_players)
+
+        txtCost = view.findViewById(R.id.game_filters_txt_cost)
+        txtRating = view.findViewById(R.id.game_filters_txt_rating)
+        txtCountPlayers = view.findViewById(R.id.game_filters_txt_count_players)
+        txtValCost = view.findViewById(R.id.game_filters_txt_val_cost)
+        txtValRating = view.findViewById(R.id.game_filters_txt_val_rating)
+        txtValCountPlayers = view.findViewById(R.id.game_filters_txt_val_count_players)
+
+        txtNavText = view.findViewById(R.id.game_filters_txt_nav_text)
+
+        btnApplyFilters = view.findViewById(R.id.game_filters_btn_apply_filters)
+        btnClearFilters = view.findViewById(R.id.game_filters_btn_clear_filters)
+
+        UIAdapter.setFont(txtCost!!, Storage.settings.raw)
+        UIAdapter.setFont(txtValCost!!, Storage.settings.raw)
+        UIAdapter.setFont(txtRating!!, Storage.settings.raw)
+        UIAdapter.setFont(txtValRating!!, Storage.settings.raw)
+        UIAdapter.setFont(txtCountPlayers!!, Storage.settings.raw)
+        UIAdapter.setFont(txtValCountPlayers!!, Storage.settings.raw)
+        UIAdapter.setFont(txtNavText!!, Storage.settings.raw)
+        UIAdapter.setFont(btnApplyFilters!!, Storage.settings.raw)
+        UIAdapter.setFont(btnClearFilters!!, Storage.settings.raw)
     }
 
     private fun setupClickListeners() {
         view?.findViewById<ImageButton>(R.id.game_filters_img_btn_back)?.setOnClickListener() { onBackClick(it) }
-        view?.findViewById<Button>(R.id.game_filters_btn_apply_filters)?.setOnClickListener() { onApplyFilters(it) }
-        view?.findViewById<Button>(R.id.game_filters_btn_clear_filters)?.setOnClickListener() { onClearFilters(it) }
+        btnApplyFilters?.setOnClickListener() { onApplyFilters(it) }
+        btnClearFilters?.setOnClickListener() { onClearFilters(it) }
     }
 
     private fun onBackClick(it: View) {
@@ -104,43 +128,43 @@ class GameFilters : Fragment() {
 
     private fun onMinCostChangeValue(filters: Filters, sb: SeekBar) {
         filters.minCost = UIAdapter.getCost(sb)
-        UIAdapter.setCostRange(filters.minCost, filters.maxCost, txtCost!!)
+        UIAdapter.setCostRange(filters.minCost, filters.maxCost, txtValCost!!)
     }
 
     private fun onMaxCostChangeValue(filters: Filters, sb: SeekBar) {
         filters.maxCost = UIAdapter.getCost(sb)
-        UIAdapter.setCostRange(filters.minCost, filters.maxCost, txtCost!!)
+        UIAdapter.setCostRange(filters.minCost, filters.maxCost, txtValCost!!)
     }
 
     private fun onMinCountPlayersChangeValue(filters: Filters, sb: SeekBar) {
         filters.minCountPlayers = UIAdapter.getCountPlayers(sb)
-        UIAdapter.setCountPlayersRange(filters.minCountPlayers, filters.maxCountPlayers, txtCountPlayers!!)
+        UIAdapter.setCountPlayersRange(filters.minCountPlayers, filters.maxCountPlayers, txtValCountPlayers!!)
     }
 
     private fun onMaxCountPlayersChangeValue(filters: Filters, sb: SeekBar) {
         filters.maxCountPlayers = UIAdapter.getCountPlayers(sb)
-        UIAdapter.setCountPlayersRange(filters.minCountPlayers, filters.maxCountPlayers, txtCountPlayers!!)
+        UIAdapter.setCountPlayersRange(filters.minCountPlayers, filters.maxCountPlayers, txtValCountPlayers!!)
     }
 
     private fun onMinRatingChangeValue(filters: Filters, sb: SeekBar) {
         filters.minRating = UIAdapter.getRating(sb)
-        UIAdapter.setRatingRange(filters.minRating, filters.maxRating, txtRating!!)
+        UIAdapter.setRatingRange(filters.minRating, filters.maxRating, txtValRating!!)
     }
 
     private fun onMaxRatingChangeValue(filters: Filters, sb: SeekBar) {
         filters.maxRating = UIAdapter.getRating(sb)
-        UIAdapter.setRatingRange(filters.minRating, filters.maxRating, txtRating!!)
+        UIAdapter.setRatingRange(filters.minRating, filters.maxRating, txtValRating!!)
     }
 
     private fun writeFiltersToUI(filters: Filters) {
         UIAdapter.setCost(filters.minCost, minCost!!)
         UIAdapter.setCost(filters.maxCost, maxCost!!)
-        UIAdapter.setCostRange(filters.minCost, filters.maxCost, txtCost!!)
+        UIAdapter.setCostRange(filters.minCost, filters.maxCost, txtValCost!!)
         UIAdapter.setRating(filters.minRating, minRating!!)
         UIAdapter.setRating(filters.maxRating, maxRating!!)
-        UIAdapter.setCostRange(filters.minRating, filters.maxRating, txtRating!!)
+        UIAdapter.setCostRange(filters.minRating, filters.maxRating, txtValRating!!)
         UIAdapter.setCountPlayers(filters.minCountPlayers, minCountPlayers!!)
         UIAdapter.setCountPlayers(filters.maxCountPlayers, maxCountPlayers!!)
-        UIAdapter.setCountPlayersRange(filters.minCountPlayers, filters.maxCountPlayers, txtCountPlayers!!)
+        UIAdapter.setCountPlayersRange(filters.minCountPlayers, filters.maxCountPlayers, txtValCountPlayers!!)
     }
 }

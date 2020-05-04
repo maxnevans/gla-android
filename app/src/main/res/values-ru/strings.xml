@@ -24,4 +24,5 @@
     <string name="create_game">Создать игру</string>
     <string name="restore_settings">Сбросить</string>
     <string name="watch_trailer">Смотреть трейлер</string>
+    <string name="font_family">Шрифт</string>
 </resources>

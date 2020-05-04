@@ -22,7 +22,16 @@ import kotlinx.serialization.json.JsonConfiguration
  * A simple [Fragment] subclass.
  */
 class GameDetails : Fragment() {
-
+    private var txtValName: TextView? = null
+    private var txtWatchTrailer: TextView? = null
+    private var txtCountPlayers: TextView? = null
+    private var txtValCountPlayers: TextView? = null
+    private var txtRating: TextView? = null
+    private var txtValRating: TextView? = null
+    private var txtCost: TextView? = null
+    private var txtValCost: TextView? = null
+    private var txtValDescription: TextView? = null
+    private var txtNavText: TextView? = null
     private var game: Game? = null
 
     override fun onCreateView(
@@ -35,6 +44,35 @@ class GameDetails : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupUIElements(view)
+        setupInitialValues(view)
+    }
+
+    private fun setupUIElements(view: View) {
+        txtValName = view.findViewById(R.id.game_details_txt_val_name)
+        txtWatchTrailer = view.findViewById(R.id.game_details_txt_watch_trailer)
+        txtCountPlayers = view.findViewById(R.id.game_details_txt_count_players)
+        txtValCountPlayers = view.findViewById(R.id.game_details_txt_val_count_players)
+        txtRating = view.findViewById(R.id.game_details_txt_rating)
+        txtValRating = view.findViewById(R.id.game_details_txt_val_rating)
+        txtCost = view.findViewById(R.id.game_details_txt_cost)
+        txtValCost = view.findViewById(R.id.game_details_txt_val_cost)
+        txtValDescription = view.findViewById(R.id.game_details_txt_val_description)
+        txtNavText = view.findViewById(R.id.game_details_txt_nav_text)
+
+        UIAdapter.setFont(txtValName!!, Storage.settings.raw)
+        UIAdapter.setFont(txtWatchTrailer!!, Storage.settings.raw)
+        UIAdapter.setFont(txtCountPlayers!!, Storage.settings.raw)
+        UIAdapter.setFont(txtValCountPlayers!!, Storage.settings.raw)
+        UIAdapter.setFont(txtRating!!, Storage.settings.raw)
+        UIAdapter.setFont(txtValRating!!, Storage.settings.raw)
+        UIAdapter.setFont(txtCost!!, Storage.settings.raw)
+        UIAdapter.setFont(txtValCost!!, Storage.settings.raw)
+        UIAdapter.setFont(txtValDescription!!, Storage.settings.raw)
+        UIAdapter.setFont(txtNavText!!, Storage.settings.raw)
+    }
+
+    private fun setupInitialValues(view: View) {
         val json = Json(JsonConfiguration.Stable)
         game = json.parse(Game.serializer(), GameDetailsArgs.fromBundle(requireArguments()).jsonGame ?: "")
         fillGameData(view, game!!)
@@ -58,7 +96,10 @@ class GameDetails : Fragment() {
             builder.setPositiveButton("Ok") { dialog: DialogInterface?, which: Int ->
                 // DO noting
             }
-            builder.show()
+            val dialog = builder.show()
+            UIAdapter.setFont(dialog.findViewById<TextView>(android.R.id.message), Storage.settings.raw)
+            //UIAdapter.setFont(dialog.findViewById<TextView>(androidx.appcompat.R.id.alertTitle), Storage.settings.raw)
+            UIAdapter.setFont(dialog.getButton(AlertDialog.BUTTON_POSITIVE), Storage.settings.raw)
         } else {
             val action = GameDetailsDirections.actionFragmentGameDetailsToActivityTrailerPlayer(Storage.resolveTrailer(requireContext(), game?.trailer))
             Navigation.findNavController(it).navigate(action)

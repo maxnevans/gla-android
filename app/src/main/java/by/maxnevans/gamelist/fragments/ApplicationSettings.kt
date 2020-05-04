@@ -20,9 +20,15 @@ import by.maxnevans.gamelist.view.UIAdapter
  */
 class ApplicationSettings : Fragment() {
     private var settings: Settings = Storage.settings.raw.copy()
+    private var txtLanguage: TextView? = null
+    private var txtFontSize: TextView? = null
+    private var txtFontFamily: TextView? = null
     private var spLanguage: Spinner? = null
     private var spFontFamily: Spinner? = null
     private var sbFontSize: SeekBar? = null
+    private var btnApplySettings: Button? = null
+    private var btnRestoreSettings: Button? = null
+    private var txtNavText: TextView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +50,19 @@ class ApplicationSettings : Fragment() {
         spLanguage =view.findViewById(R.id.app_settings_spinner_language)
         spFontFamily = view.findViewById(R.id.app_settings_spinner_font_family)
         sbFontSize = view.findViewById(R.id.app_settings_sb_font_size)
+        txtLanguage = view.findViewById(R.id.app_settings_txt_language)
+        txtFontFamily = view.findViewById(R.id.app_settings_txt_font_family)
+        txtFontSize = view.findViewById(R.id.app_settings_txt_font_size)
+        txtNavText = view.findViewById(R.id.app_settings_txt_nav_text)
+        btnApplySettings = view.findViewById(R.id.app_settings_btn_apply_settings)
+        btnRestoreSettings = view.findViewById(R.id.app_settings_btn_restore_settings)
+
+        UIAdapter.setFont(txtLanguage!!, Storage.settings.raw)
+        UIAdapter.setFont(txtFontFamily!!, Storage.settings.raw)
+        UIAdapter.setFont(txtFontSize!!, Storage.settings.raw)
+        UIAdapter.setFont(txtNavText!!, Storage.settings.raw)
+        UIAdapter.setFont(btnApplySettings!!, Storage.settings.raw)
+        UIAdapter.setFont(btnRestoreSettings!!, Storage.settings.raw)
     }
 
     private fun setupInitialValues() {
