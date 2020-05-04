@@ -10,7 +10,9 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.navigation.Navigation
 import by.maxnevans.gamelist.R
+import by.maxnevans.gamelist.model.GamesBuilder
 import by.maxnevans.gamelist.model.Storage
+import by.maxnevans.gamelist.model.dao.Game
 import by.maxnevans.gamelist.view.UIAdapter
 
 /**
@@ -66,9 +68,19 @@ class AddGame : Fragment() {
         Navigation.findNavController(it).popBackStack()
     }
 
-    private fun onAddGameClick(it: View) {
-        // TODO
-        onBackClick(it)
+    private fun readGameFromUI(): Game {
+        val ret = GamesBuilder.buildDefault()
+        ret.name = txtValName?.text.toString()
+        ret.rating = txtValRating?.text.toString().toDoubleOrNull() ?: 0.0
+        ret.countPlayers = txtValCountPlayers?.text.toString().toDoubleOrNull() ?: 0.0
+        ret.cost = txtValCost?.text.toString().toDoubleOrNull() ?: 0.0
+        ret.description = txtValDescription?.text.toString()
+
+        return ret
     }
 
+    private fun onAddGameClick(it: View) {
+        Storage.games.add(readGameFromUI())
+        onBackClick(it)
+    }
 }
