@@ -44,7 +44,7 @@ class SettingsController internal constructor(): UpdatableController<Settings>()
 
     fun reset() {
         settings = SettingsBuilder.buildDefault()
-        notifyChange(true)
+        notifyChange()
     }
 
     fun toJson(): String {

@@ -30,8 +30,18 @@ class GameList : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupUIElements(view)
         setupClickListeners(view)
+        setupUpdateListeners()
 
         gamesContainer = view.findViewById(R.id.ctnr_list_v_layout)
+        updateGameList(gamesContainer!!)
+    }
+
+    private fun setupUpdateListeners() {
+        Storage.games.onChange{onGameListChange()}
+    }
+
+    private fun onGameListChange() {
+        gamesContainer ?: return
         updateGameList(gamesContainer!!)
     }
 
@@ -69,8 +79,11 @@ class GameList : Fragment() {
     }
 
     private fun updateGameList(gamesContainer: LinearLayout) {
+        gamesContainer.removeAllViews()
         for (game in Storage.games.filter(Storage.filters))
             gamesContainer.addView(createGameView(game))
+
+        gamesContainer.invalidate()
     }
 
     private fun createGameView(game: Game): View {

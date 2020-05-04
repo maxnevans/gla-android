@@ -56,8 +56,11 @@ tools:context=".fragments.GameDetails">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/default_logo" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:id="@+id/textView4"

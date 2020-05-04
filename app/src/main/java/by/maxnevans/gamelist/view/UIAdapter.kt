@@ -1,7 +1,9 @@
 package by.maxnevans.gamelist.view
 
 import android.R
+import android.graphics.BitmapFactory
 import android.widget.*
+import androidx.core.content.res.ResourcesCompat
 import by.maxnevans.gamelist.model.FiltersBuilder
 import by.maxnevans.gamelist.model.SettingsBuilder
 import by.maxnevans.gamelist.model.Storage
@@ -60,7 +62,9 @@ object UIAdapter {
     }
 
     fun setLogo(logo: String?, image: ImageView) {
-        image.background = Storage.resolveImage(image.context, logo)
+        Storage.resolveImage(image.context, logo){
+            image.setImageBitmap(it)
+        }
     }
 
     fun setName(name: String, txt: TextView) {

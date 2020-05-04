@@ -10,7 +10,7 @@ abstract class UpdatableController<T> {
         }
         set(value) {
             obj = value
-            notifyChange(true)
+            notifyChange()
         }
 
     fun beginUpdateTransaction() {
@@ -18,7 +18,7 @@ abstract class UpdatableController<T> {
     }
 
     fun endUpdateTransaction() {
-        notifyChange(true)
+        notifyChange()
         isUpdating = false
     }
 
@@ -26,10 +26,7 @@ abstract class UpdatableController<T> {
         onChangeCallbacks.add(cb)
     }
 
-    protected fun notifyChange(singleTransaction: Boolean = false) {
-        if (!singleTransaction || isUpdating)
-            return
-
+    protected fun notifyChange() {
         for (cb in onChangeCallbacks)
             cb(raw)
     }

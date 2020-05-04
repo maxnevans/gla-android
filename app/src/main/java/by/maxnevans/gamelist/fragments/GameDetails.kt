@@ -89,20 +89,26 @@ class GameDetails : Fragment() {
     }
 
     private fun onWatchTrailerClick(it: View) {
-        if (game?.trailer == null) {
-            val builder = AlertDialog.Builder(it.context)
-            builder.setMessage(R.string.failed_to_play_trailer)
-            builder.setTitle(R.string.trailer_not_found)
-            builder.setPositiveButton("Ok") { dialog: DialogInterface?, which: Int ->
-                // DO noting
+        var isPlaying = false
+        Storage.resolveTrailer(requireContext(), game?.trailer){url ->
+            if (url == null) {
+                val builder = AlertDialog.Builder(it.context)
+                builder.setMessage(R.string.failed_to_play_trailer)
+                builder.setTitle(R.string.trailer_not_found)
+                builder.setPositiveButton("Ok") { dialog: DialogInterface?, which: Int ->
+                    // DO noting
+                }
+                val dialog = builder.show()
+                UIAdapter.setFont(dialog.findViewById<TextView>(android.R.id.message), Storage.settings.raw)
+                //UIAdapter.setFont(dialog.findViewById<TextView>(androidx.appcompat.R.id.alertTitle), Storage.settings.raw)
+                UIAdapter.setFont(dialog.getButton(AlertDialog.BUTTON_POSITIVE), Storage.settings.raw)
+            } else {
+                if (!isPlaying) {
+                    isPlaying = true
+                    val action = GameDetailsDirections.actionFragmentGameDetailsToActivityTrailerPlayer(url)
+                    Navigation.findNavController(it).navigate(action)
+                }
             }
-            val dialog = builder.show()
-            UIAdapter.setFont(dialog.findViewById<TextView>(android.R.id.message), Storage.settings.raw)
-            //UIAdapter.setFont(dialog.findViewById<TextView>(androidx.appcompat.R.id.alertTitle), Storage.settings.raw)
-            UIAdapter.setFont(dialog.getButton(AlertDialog.BUTTON_POSITIVE), Storage.settings.raw)
-        } else {
-            val action = GameDetailsDirections.actionFragmentGameDetailsToActivityTrailerPlayer(Storage.resolveTrailer(requireContext(), game?.trailer))
-            Navigation.findNavController(it).navigate(action)
         }
     }
 

@@ -18,18 +18,18 @@ class SplashActivity : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_splash)
 
-        // TODO: load games from database
-        val gDota2 = Game(0, "Dota 2 ", 0.0, 4.3, 10000.0, "", null, "android.resource://" + baseContext.packageName + "/" + R.raw.dota2)
-        val gLol = Game(1, "League of Legends", 0.0, 4.3, 10000.0, "", null, null)
-        Storage.games.beginUpdateTransaction()
-        Storage.games.add(gDota2)
-        Storage.games.add(gLol)
-        Storage.games.endUpdateTransaction()
+        Storage.setup(baseContext)
 
         Fonts.loadFonts(baseContext)
         Formatter.setupResourceSource(baseContext)
+        Storage.loadFromLocalStorage {
+            Storage.loadFromDatabase { successDatabase ->
+                if (successDatabase)
+                    Storage.saveToLocalStorage()
+            }
+        }
 
-        Handler().postDelayed(Runnable {
+        Handler().postDelayed({
             val i = Intent(baseContext, MainActivity::class.java)
             startActivity(i)
             finish()

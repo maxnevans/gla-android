@@ -71,7 +71,7 @@ class FiltersController internal constructor(): UpdatableController<Filters>(){
 
     fun reset() {
         filters = FiltersBuilder.buildDefault()
-        notifyChange(true)
+        notifyChange()
     }
 
     fun toJson(): String {
